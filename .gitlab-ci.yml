@@ -1,0 +1,12 @@
+---
+default:
+  tags:
+    - azure
+    - docker
+  timeout: 1 hours
+
+variables:
+  GIT_SUBMODULE_STRATEGY: normal
+
+include:
+  - local: 'Packer.azure.gitlab-ci.yml'

@@ -1,0 +1,4 @@
+[submodule "packer-common"]
+	path = packer-common
+	branch = submodule-prajapb
+	url = https://git.swf.daimler.com/oak/cloud-developer-workspace/packer-common.git

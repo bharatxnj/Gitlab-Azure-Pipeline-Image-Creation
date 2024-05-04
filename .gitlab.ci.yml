@@ -1,0 +1,11 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+    - az vm create --resource-group <resource-group-name> --name <vm-name> --image <image-id> --admin-username <admin-username> --admin-password <admin-password> --custom-data <custom-data>
+  only:
+    - master
+Replace <resource-group-name>, <vm-name>, <image-id>, <admin-username>, <admin-password>, and <custom-data> with your actual values.

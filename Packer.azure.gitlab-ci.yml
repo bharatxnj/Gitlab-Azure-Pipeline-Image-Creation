@@ -1,0 +1,31 @@
+image:
+  name: hashicorp/packer:latest
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
+before_script:
+  - packer --version
+
+stages:
+  - linting
+  - build
+  - deploy
+
+packer:init and validate:
+  stage: linting
+  script: 
+    - packer init .
+    - packer validate .
+
+packer:fmt:
+  stage: linting
+  script: 
+    - packer fmt -check -diff .
+
+packer:build:
+  stage: build
+  script:
+    - packer init .
+    - echo "yesssssssssssssssss"
+    - packer build -var "client_id=${CLIENT_ID}" -var "client_secret=${CLIENT_SECRET}" -var "subscription_id=${SUBSCRIPTION_ID}" -var "tenant_id=${TENANT_ID}" .
